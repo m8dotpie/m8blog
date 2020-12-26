@@ -1,16 +1,33 @@
 ---
-title: Home
+title: Blog
 ---
-
-<h2>Welcome</h2>
-
-<img src="/images/haskell-logo.png" style="float: right; margin: 10px;" />
-
-<p>Welcome to my blog!</p>
-
-<p>I've reproduced a list of recent posts here for your reading pleasure:</p>
-
-<h2>Posts</h2>
-$partial("templates/post-list.html")$
-
-<p>…or you can find more in the <a href="/archive.html">archives</a>.</p>
+<h2>Important posts:</h2>
+<ul>
+    $for(posts)$
+        $if(important)$
+            <li>
+                <a href="$url$"><strong>$title$</strong></a> - <i>$date$</i>
+                <br>
+                $if(abstract)$
+                    <p>$abstract$</p>
+                $endif$
+            </li>
+        $endif$
+    $endfor$
+</ul>
+<h2>Other posts</h2>
+<include src="templates/post-list.html"></include>
+<ul>
+    $for(posts)$
+        $if(important)$
+        $else$
+            <li>
+                <a href="$url$"><strong>$title$</strong></a> - <i>$date$</i>
+                <br>
+                $if(abstract)$
+                    <p>$abstract$</p>
+                $endif$
+            </li>
+        $endif$
+    $endfor$
+</ul>

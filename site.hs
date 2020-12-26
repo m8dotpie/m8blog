@@ -17,7 +17,11 @@ main = hakyllWith myCfg $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["about.rst", "contact.markdown"]) $ do
+    match "js/*" $ do
+        route idRoute
+        compile copyFileCompiler
+
+    match (fromList ["about.rst", "projects.markdown", "publications.markdown", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -29,6 +33,7 @@ main = hakyllWith myCfg $ do
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
+
 
     create ["archive.html"] $ do
         route idRoute
