@@ -2,8 +2,7 @@
 // Add class "active" to the button representing current page.
 function activateTab() {
     thisPage = location.pathname;
-    console.log(thisPage)
-    if (thisPage == "/" || thisPage.includes("index.html")) {
+    if (thisPage == "/" || thisPage == "/m8blog/" || thisPage.includes("index.html")) {
         (document.getElementById("tab0").className) = "active";
         return;
     }
