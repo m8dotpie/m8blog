@@ -27,9 +27,32 @@
         
             by Me
         
+        
     </section>
     <section>
-        <p>Not yet</p>
+        <ol type="1">
+<li><strong>Why Hakyll?</strong></li>
+</ol>
+<p>Well, I believe that one day I will write my own static site generator, but until that moment I have to use some tools written by other people. <a href="https://jaspervdj.be/hakyll/">Hakyll</a> is <a href="https://jekyllrb.com">Jekyll</a> made and configured with Haskell obviously. I thought that is a great chance to practice some Haskell; however, I changed default configuration very slightly.</p>
+<ol start="2" type="1">
+<li><strong>Why Courier New?</strong></li>
+</ol>
+<p>I understand that is difficult sometimes to ready long texts with this font. I wanted to use Roboto Mono as I always do, but I accidentally decided to try Courier New and really loved it from the very first character.</p>
+<ol start="3" type="1">
+<li><strong>How to replicate this design?</strong></li>
+</ol>
+<p>All the sources can be found <a href="https://github.com/m8dotpie/m8blog">here</a>.</p>
+<p>What I have done to create this blog?</p>
+<pre><code>- Generated Hakyll template site
+- Changed navigation bar to responsive one (just copy-pasted from guide)
+- Changed color of navigation bar to stylish black
+- Polished some colors, margins, sizes and paddings
+- Changed index.html to main blog list
+- Made some modifications like &quot;important&quot; posts and etc</code></pre>
+<p>The most difficult part was to make Hakyll work on Mac. One of packages relied on standard frameworks like Cocoa and etc; however, on MacOS 11 (Big Sure) there is a problem accessing them. So there is no way to use it with haskell stack package manager (unless you comment packages it can’t compile). The only way is cabal package manager.</p>
+<ol start="4" type="1">
+<li><strong>Some other questions answered here.</strong></li>
+</ol>
     </section>
 </article>
 

@@ -1,0 +1,6 @@
+---
+title: Our loop is mine
+url: https://itch.io/jam/ludum-dare-47-indikator/rate/777298
+abstract: Ludum Dare 47 submission. It is <strong>not</strong> an individual submission and I was only one of coders. One day our team will fix this project, since early builds still not perfect, animations are not working and some bugs persist. <a href="https://github.com/m8dotpie/ludumjam47">Sources.</a>
+---
+Ludum Dare 47 submission. It is **not** an individual submission and I was only one of coders. One day our team will fix this project, since early builds still not perfect, animations are not working and some bugs persist. [Sources](https://github.com/m8dotpie/ludumjam47)

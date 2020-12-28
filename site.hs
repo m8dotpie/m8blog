@@ -21,7 +21,7 @@ main = hakyllWith myCfg $ do
         route idRoute
         compile copyFileCompiler
 
-    match (fromList ["about.rst", "projects.markdown", "publications.markdown", "contact.markdown"]) $ do
+    match (fromList ["about.rst", "contact.markdown"]) $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -34,22 +34,46 @@ main = hakyllWith myCfg $ do
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
 
+    match "projects/*" $ do
+        route $ setExtension "html"
+        compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/project.html" projectCtx
+            >>= loadAndApplyTemplate "templates/default.html" projectCtx 
+            >>= relativizeUrls
 
-    create ["archive.html"] $ do
+    match "publications/*" $ do
+        route $ setExtension "html"
+        compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/publication.html" publicationCtx
+            >>= loadAndApplyTemplate "templates/default.html" publicationCtx
+            >>= relativizeUrls
+
+    match "projects.html" $ do
         route idRoute
         compile $ do
-            posts <- recentFirst =<< loadAll "posts/*"
-            let archiveCtx =
-                    listField "posts" postCtx (return posts) `mappend`
-                    constField "title" "Archives"            `mappend`
+            projects <- loadAll "projects/*"
+            let projectsCtx =
+                    listField "projects" projectCtx (return projects) `mappend`
                     defaultContext
 
-            makeItem ""
-                >>= loadAndApplyTemplate "templates/archive.html" archiveCtx
-                >>= loadAndApplyTemplate "templates/default.html" archiveCtx
+            getResourceBody
+                >>= applyAsTemplate projectsCtx
+                >>= loadAndApplyTemplate "templates/default.html" projectsCtx
                 >>= relativizeUrls
 
+    match "publications.html" $ do
+        route idRoute
+        compile $ do
+            publications <- recentFirst =<< loadAll "publications/*"
+            let projectsCtx =
+                    listField "publications" publicationCtx (return publications) `mappend`
+                    defaultContext
 
+            getResourceBody
+                >>= applyAsTemplate projectsCtx
+                >>= loadAndApplyTemplate "templates/default.html" projectsCtx
+                >>= relativizeUrls
+    
     match "index.html" $ do
         route idRoute
         compile $ do
@@ -69,5 +93,15 @@ main = hakyllWith myCfg $ do
 --------------------------------------------------------------------------------
 postCtx :: Context String
 postCtx =
+    dateField "date" "%B %e, %Y" `mappend`
+    defaultContext
+
+projectCtx :: Context String
+projectCtx =
+    dateField "date" "%B %e, %Y" `mappend`
+    defaultContext
+
+publicationCtx :: Context String
+publicationCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext

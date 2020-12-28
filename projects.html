@@ -1,0 +1,32 @@
+---
+title: Projects
+---
+<h3>In progress:</h3>
+<ul>
+    $for(projects)$
+        $if(inprogress)$
+        <li>
+            <a href="$url$"><strong>$title$</strong></a>
+            $if(abstract)$
+                <br>
+                <p>$abstract$</p>
+            $endif$
+        </li>
+        $endif$
+    $endfor$
+</ul>
+<h3>Completed:</h3>
+<ul>
+    $for(projects)$
+        $if(inprogress)$
+        $else$
+        <li>
+            <a href="$url$"><strong>$title$</strong></a>
+            $if(abstract)$
+                <br>
+                <p>$abstract$</p>
+            $endif$
+        </li>
+        $endif$
+    $endfor$
+</ul>
